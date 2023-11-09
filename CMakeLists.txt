@@ -10,4 +10,6 @@ add_executable(CPP_Parser main.cpp
         LexicalAnalyzer.h
         Value.cpp
         Value.h
+        SymbolTable.cpp
+        SymbolTable.h
 )
