@@ -108,14 +108,6 @@ void ContextManager::pushWarning(int warningID, const std::string &str) {
     warningQueue.push(warningMessage);
 }
 
-namespace Color {
-    const std::string RESET = "\033[0m";
-    const std::string MAGENTA = "\033[35m";
-    const std::string YELLOW = "\033[33m";
-    const std::string RED = "\033[31m";
-    const std::string GREEN = "\033[32m";
-}
-
 void ContextManager::printInfo() {
     std::cout << Color::MAGENTA;
     std::cout << "ID: " << identNum << "; CONST: " << constNum << "; OP: " << opNum << ";" << Color::RESET << '\n';

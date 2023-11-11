@@ -5,6 +5,14 @@
 #include <string>
 #include <queue>
 
+namespace Color {
+    const std::string RESET = "\033[0m";
+    const std::string MAGENTA = "\033[35m";
+    const std::string YELLOW = "\033[33m";
+    const std::string RED = "\033[31m";
+    const std::string GREEN = "\033[32m";
+}
+
 class ContextManager {
 private:
     static ContextManager *instance;
