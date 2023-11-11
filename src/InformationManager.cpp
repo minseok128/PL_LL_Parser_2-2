@@ -1,5 +1,4 @@
 #include "InformationManager.h"
-#include <iostream>
 
 InformationManager *InformationManager::instance = nullptr;
 

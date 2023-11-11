@@ -1,9 +1,9 @@
 #ifndef LEXICALANALYZER_H
 #define LEXICALANALYZER_H
 
+# include <iostream>
 # include <string>
 # include <fstream>
-# include <iostream>
 # include <stdexcept>
 # include "InformationManager.h"
 

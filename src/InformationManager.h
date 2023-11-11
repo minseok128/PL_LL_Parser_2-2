@@ -1,6 +1,7 @@
 #ifndef INFORMATIONMANAGER_H
 #define INFORMATIONMANAGER_H
 
+#include <iostream>
 #include <string>
 #include <queue>
 

@@ -9,7 +9,7 @@ private:
 public:
     Value();
 
-    Value(int val);
+    explicit Value(int val);
 
     Value(const Value &v);
 
