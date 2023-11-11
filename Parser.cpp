@@ -71,6 +71,10 @@ void Parser::termTail() {
         infoMan->increaseOpNum();
         std::string prevTokenStr = lexer->getTokenStr();
         lexer->lexical();
+        while (lexer->getNextToken() == TokenType::MULT_OP || lexer->getNextToken() == TokenType::ADD_OP) {
+            infoMan->pushWarning(0, lexer->getTokenStr());
+            lexer->lexical();
+        }
         term();
         Value v2 = valStack.top();
         valStack.pop();
@@ -92,6 +96,10 @@ void Parser::factorTail() {
         infoMan->increaseOpNum();
         std::string prevTokenStr = lexer->getTokenStr();
         lexer->lexical();
+        while (lexer->getNextToken() == TokenType::MULT_OP || lexer->getNextToken() == TokenType::ADD_OP) {
+            infoMan->pushWarning(0, lexer->getTokenStr());
+            lexer->lexical();
+        }
         factor();
         Value v2 = valStack.top();
         valStack.pop();
@@ -128,7 +136,7 @@ void Parser::factor() {
         } else {
             lexer->printTokenStr("");
             infoMan->increaseConstNum();
-            valStack.push(Value(std::stoi(lexer->getTokenStr())));
+            valStack.emplace(std::stoi(lexer->getTokenStr()));
             lexer->lexical();
         }
         while ((nextToken = lexer->getNextToken()) != TokenType::ADD_OP && nextToken != TokenType::MULT_OP &&
