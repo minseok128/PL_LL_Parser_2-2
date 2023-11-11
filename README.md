@@ -13,3 +13,9 @@ $ ./parser test_case/test1.txt
 # or
 $ make test
 ```
+
+## TO DO
+
+-[ ] '-v' option 설계 및 개발
+-[ ] 음의 정수 처리
+-[ ] 그 외 더 다양한 에러 및 오류 처리
