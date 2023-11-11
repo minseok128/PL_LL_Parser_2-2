@@ -1,14 +1,14 @@
-#include "Value.h"
-#include "InformationManager.h"
+#include "Var.h"
+#include "ContextManager.h"
 
-Value::Value() : value(0), isInitialized(false) {}
+Var::Var() : value(0), isInitialized(false) {}
 
-Value::Value(int val) : value(val), isInitialized(true) {}
+Var::Var(int val) : value(val), isInitialized(true) {}
 
-Value::Value(const Value &v) = default;
+Var::Var(const Var &v) = default;
 
-Value Value::cal(const Value &v1, const Value &v2, char op) {
-    Value res;
+Var Var::cal(const Var &v1, const Var &v2, char op) {
+    Var res;
     res.isInitialized = v1.isInitialized && v2.isInitialized;
 
     if (op == '+') {
@@ -20,7 +20,7 @@ Value Value::cal(const Value &v1, const Value &v2, char op) {
     } else if (op == '/') {
         if (v2.isInitialized && v2.value == 0) {
             res.isInitialized = false;
-            InformationManager::getInstance()->pushError(2, "Division by zero");
+            ContextManager::getInstance()->pushError(2, "Division by zero");
         } else if (v2.isInitialized) {
             res.value = v1.value / v2.value;
         }
@@ -29,19 +29,19 @@ Value Value::cal(const Value &v1, const Value &v2, char op) {
     return (res);
 }
 
-int Value::getValue() const {
+int Var::getValue() const {
     return (value);
 }
 
-bool Value::getIsInitialized() const {
+bool Var::getIsInitialized() const {
     return (isInitialized);
 }
 
-void Value::setValue(int val) {
+void Var::setValue(int val) {
     value = val;
     isInitialized = true;
 }
 
-void Value::setIsInitialized(bool val) {
+void Var::setIsInitialized(bool val) {
     isInitialized = val;
 }

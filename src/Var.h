@@ -1,19 +1,19 @@
 #ifndef VALUE_H
 #define VALUE_H
 
-class Value {
+class Var {
 private:
     int value;
     bool isInitialized;
 
 public:
-    Value();
+    Var();
 
-    explicit Value(int val);
+    explicit Var(int val);
 
-    Value(const Value &v);
+    Var(const Var &v);
 
-    static Value cal(const Value &v1, const Value &v2, char op);
+    static Var cal(const Var &v1, const Var &v2, char op);
 
     // Additional methods to access and modify private members, if needed
     int getValue() const;
