@@ -5,6 +5,7 @@
 # include <fstream>
 # include <iostream>
 # include <stdexcept>
+# include "InformationManager.h"
 
 enum class TokenType {
     CONST,
@@ -21,6 +22,7 @@ enum class TokenType {
 
 class LexicalAnalyzer {
 private:
+    InformationManager *infoMan;
     static LexicalAnalyzer *instance;
     std::string totalStr;
     int now;

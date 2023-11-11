@@ -1,3 +1,76 @@
+// test1
 operand1 := 3;
 operand2 := operand1 + 2;
 target := operand1 + operand2 * 3
+
+// test2
+operand2 := operand1 + 2;
+target := operand1 + operand2 * 3
+
+// test3
+operand1 := 1;
+operand2 := (operand1 * 3) + 2;
+target := operand1 + operand2 * 3
+
+// test4
+operand1 := 3;
+operand2 := operand1 + + 2;
+target := operand1 + operand2 * 3
+
+// WARNING_0 : 연산자 반복
+operand1 := 3;
+operand2 := operand1 + + 2;
+target := operand1 + operand2 * 3
+
+// WARNING_1 : 닫는 괄호 부족
+operand1 := (3 * (3 - 1) * (5 - 3;
+target := operand1 * ((1) - (((2
+
+// WARNING_2 : <factor> 뒤 불필요한 요소 등장
+operand1 := 3 21 3 + (2 321 * 2) 132 operand1;
+operand2 := operand1 operand1 operand2+ operand1 123 operand2 operand1;
+target := operand1 1 2
+
+// WARNING_3 : 대입연산자 등장하지 않음
+operand1  3;
+operand2 := operand1 + 2;
+target  operand1 + operand2 * 3
+
+// WARNING_4 : UNDEFINED 토큰 등장
+operand1 := &%3 ^^;$#
+operand2 := operand1 &$ + &$2
+
+// WARNING_5 : 피연산자(CONST, IDENT) 부족
+operand1 := 3 - ;
+operand2 := * 2 + (1 - 2);
+target :=
+
+// WARNING_6 : CONST 내부에 숫자 외의 문자 포함
+operand1 := 1%1^1@1#;
+operand2 := operand1 + 2!!@#
+
+// WARNING_7 : IDENT 내부에 규칙 외의 문자 포함
+op%^er$@and1 := 3;
+op@era#n%d2 := op^^er^^and1 + 2;
+tar^^$#%get := o^pe^rand^1 + operand2^
+
+// WARNING_8 : 여는 괄호 부족
+operand1 := 2 + 3) * 2;
+operand2 := operand1) ))+ ((2))))
+
+// WARNING_9 : 대입연산자 중복
+operand1 := 3 := := := + 1 := := - 3;
+operand2 := := := operand1 := + 2;
+target := operand1 + operand2 * 3 :=
+
+// ERROR_0 : 정의되지 않은 변수(IDENT)를 사용하는 경우
+operand2 := operand1 + 2;
+target := operand3 + operand2 * 3
+
+// ERROR_1 : 대입 연산의 LHS 존재하지 않음
+:= 1 + 2;
+2 := 1 * 3
+
+// ERROR_2 : 0으로 나누려는 시도
+operand1 := 21 / 0 + 1;
+operand2 := operand1 + 2;

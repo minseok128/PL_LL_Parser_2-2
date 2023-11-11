@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <iostream>
 #include "Value.h"
 
 class SymbolTable {
@@ -10,10 +11,9 @@ private:
     static SymbolTable *instance;
     std::unordered_map<std::string, Value> table;
 
-    SymbolTable(); // Private constructor for singleton
+    SymbolTable();
 
 public:
-    // Delete copy constructor and assignment operator
     SymbolTable(const SymbolTable &) = delete;
 
     SymbolTable &operator=(const SymbolTable &) = delete;

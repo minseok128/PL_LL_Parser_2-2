@@ -1,5 +1,4 @@
 #include "SymbolTable.h"
-#include <iostream>
 
 SymbolTable *SymbolTable::instance = nullptr;
 
