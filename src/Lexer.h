@@ -13,7 +13,7 @@ private:
     ContextManager *ctxMan;
     static Lexer *instance;
     std::string totalStr;
-    int now;
+    unsigned int now;
     TokenType nextToken;
     std::string tokenStr;
 

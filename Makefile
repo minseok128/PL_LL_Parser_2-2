@@ -25,4 +25,7 @@ fclean : clean
 
 re : fclean all
 
+test : all
+	./$(NAME) ./test_case/test0.txt
+
 .PHONY : all clean fclean re

@@ -2,8 +2,8 @@
 
 Lexer *Lexer::instance = nullptr;
 
-Lexer::Lexer(const std::string &fileName) : now(0), nextToken(TokenType::UNDEFINED),
-                                            ctxMan(ContextManager::getInstance()) {
+Lexer::Lexer(const std::string &fileName) : ctxMan(ContextManager::getInstance()),
+                                            now(0), nextToken(TokenType::UNDEFINED) {
     std::ifstream file(fileName);
     if (!file.is_open()) {
         throw std::runtime_error("Cannot open or read the file.");
