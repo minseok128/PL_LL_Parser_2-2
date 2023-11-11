@@ -28,6 +28,7 @@ Value SymbolTable::find(const std::string &name) {
 }
 
 void SymbolTable::print_all() {
+    std::cout << "Result ==> ";
     for (const auto &pair: table) {
         std::cout << pair.first << ": ";
         if (pair.second.getIsInitialized()) {
