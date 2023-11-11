@@ -2,17 +2,17 @@
 #define PARSER_H
 
 #include <stack>
-#include "LexicalAnalyzer.h"
+#include "Lexer.h"
 #include "SymbolTable.h"
-#include "InformationManager.h"
-#include "Value.h"
+#include "ContextManager.h"
+#include "Var.h"
 
 class Parser {
 private:
-    LexicalAnalyzer *lexer;
+    Lexer *lexer;
     SymbolTable *symTab;
-    InformationManager *infoMan;
-    std::stack<Value> valStack;
+    ContextManager *ctxMan;
+    std::stack<Var> valStack;
     static Parser *instance;
 
     Parser();
