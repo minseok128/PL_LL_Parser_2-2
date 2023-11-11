@@ -5,16 +5,16 @@
 #include <string>
 #include <queue>
 
-class InformationManager {
+class ContextManager {
 private:
-    static InformationManager *instance;
+    static ContextManager *instance;
     int identNum, constNum, opNum, leftParenNum, assignmentNum;
     std::queue<std::string> warningQueue, errorQueue;
 
-    InformationManager();
+    ContextManager();
 
 public:
-    static InformationManager *getInstance();
+    static ContextManager *getInstance();
 
     void initializeInfo();
 

@@ -1,37 +1,37 @@
-#include "InformationManager.h"
+#include "ContextManager.h"
 
-InformationManager *InformationManager::instance = nullptr;
+ContextManager *ContextManager::instance = nullptr;
 
-InformationManager::InformationManager() : identNum(0), constNum(0), opNum(0), leftParenNum(0), assignmentNum(0) {}
+ContextManager::ContextManager() : identNum(0), constNum(0), opNum(0), leftParenNum(0), assignmentNum(0) {}
 
-InformationManager *InformationManager::getInstance() {
+ContextManager *ContextManager::getInstance() {
     if (instance == nullptr) {
-        instance = new InformationManager();
+        instance = new ContextManager();
     }
     return instance;
 }
 
-void InformationManager::initializeInfo() {
+void ContextManager::initializeInfo() {
     identNum = constNum = opNum = leftParenNum = assignmentNum = 0;
 }
 
-void InformationManager::increaseIdentNum() {
+void ContextManager::increaseIdentNum() {
     identNum++;
 }
 
-void InformationManager::increaseConstNum() {
+void ContextManager::increaseConstNum() {
     constNum++;
 }
 
-void InformationManager::increaseOpNum() {
+void ContextManager::increaseOpNum() {
     opNum++;
 }
 
-void InformationManager::increaseLeftParenNum() {
+void ContextManager::increaseLeftParenNum() {
     leftParenNum++;
 }
 
-bool InformationManager::decreaseLeftParenNum() {
+bool ContextManager::decreaseLeftParenNum() {
     if (leftParenNum > 0) {
         leftParenNum--;
         return true;
@@ -40,7 +40,7 @@ bool InformationManager::decreaseLeftParenNum() {
     return false;
 }
 
-bool InformationManager::increaseAssignmentNum() {
+bool ContextManager::increaseAssignmentNum() {
     if (assignmentNum == 0) {
         assignmentNum++;
         return true;
@@ -49,7 +49,7 @@ bool InformationManager::increaseAssignmentNum() {
     return false;
 }
 
-void InformationManager::pushError(int errorID, const std::string &str) {
+void ContextManager::pushError(int errorID, const std::string &str) {
     std::string errorMessage;
     switch (errorID) {
         case 0:
@@ -68,7 +68,7 @@ void InformationManager::pushError(int errorID, const std::string &str) {
     errorQueue.push(errorMessage);
 }
 
-void InformationManager::pushWarning(int warningID, const std::string &str) {
+void ContextManager::pushWarning(int warningID, const std::string &str) {
     std::string warningMessage;
     switch (warningID) {
         case 0:
@@ -116,7 +116,7 @@ namespace Color {
     const std::string GREEN = "\033[32m";
 }
 
-void InformationManager::printInfo() {
+void ContextManager::printInfo() {
     std::cout << Color::MAGENTA;
     std::cout << "ID: " << identNum << "; CONST: " << constNum << "; OP: " << opNum << ";" << Color::RESET << '\n';
 
