@@ -5,7 +5,7 @@ Value::Value() : value(0), isInitialized(false) {}
 
 Value::Value(int val) : value(val), isInitialized(true) {}
 
-Value::Value(const Value &v) : value(v.value), isInitialized(v.isInitialized) {}
+Value::Value(const Value &v) = default;
 
 Value Value::cal(const Value &v1, const Value &v2, char op) {
     Value res;
@@ -26,15 +26,15 @@ Value Value::cal(const Value &v1, const Value &v2, char op) {
         }
     }
 
-    return res;
+    return (res);
 }
 
 int Value::getValue() const {
-    return value;
+    return (value);
 }
 
 bool Value::getIsInitialized() const {
-    return isInitialized;
+    return (isInitialized);
 }
 
 void Value::setValue(int val) {

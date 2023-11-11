@@ -3,7 +3,6 @@
 
 #include <string>
 #include <queue>
-#include <iostream>
 
 class InformationManager {
 private:
@@ -11,7 +10,7 @@ private:
     int identNum, constNum, opNum, leftParenNum, assignmentNum;
     std::queue<std::string> warningQueue, errorQueue;
 
-    explicit InformationManager();
+    InformationManager();
 
 public:
     static InformationManager *getInstance();
@@ -30,14 +29,11 @@ public:
 
     bool increaseAssignmentNum();
 
-    void pushError(int errorID, const std::string &str);
+    void pushError(int errorID, const std::string &str = "");
 
-    void pushWarning(int warningID, const std::string &str);
+    void pushWarning(int warningID, const std::string &str = "");
 
     void printInfo();
-
-    // Destructor
-    ~InformationManager();
 };
 
 #endif // INFORMATIONMANAGER_H

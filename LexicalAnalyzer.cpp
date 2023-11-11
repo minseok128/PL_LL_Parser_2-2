@@ -16,14 +16,14 @@ LexicalAnalyzer::LexicalAnalyzer(const std::string &fileName) : now(0), nextToke
 
 bool LexicalAnalyzer::initializeInstance(const std::string &fileName) {
     if (instance != nullptr) {
-        return false;
+        return (false);
     }
     try {
         instance = new LexicalAnalyzer(fileName);
     } catch (...) {
-        return false;
+        return (false);
     }
-    return true;
+    return (true);
 }
 
 LexicalAnalyzer *LexicalAnalyzer::getInstance() {
@@ -113,7 +113,7 @@ void LexicalAnalyzer::lexical() {
 void LexicalAnalyzer::printTokenStr(const std::string &str) {
     if (str.empty()) {
         if (nextToken == TokenType::SEMI_COLON || nextToken == TokenType::END_OF_FILE)
-            std::cout << "\b;";
+            std::cout << "\b;\n";
         else
             std::cout << tokenStr << " ";
     } else {
