@@ -3,10 +3,10 @@ project(CPP_Parser)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CPP_Parser main.cpp
-        InformationManager.cpp InformationManager.h
-        LexicalAnalyzer.cpp LexicalAnalyzer.h
-        Value.cpp Value.h
-        SymbolTable.cpp SymbolTable.h
-        Parser.cpp Parser.h
+add_executable(CPP_Parser src/main.cpp
+        src/InformationManager.cpp src/InformationManager.h
+        src/LexicalAnalyzer.cpp src/LexicalAnalyzer.h
+        src/Value.cpp src/Value.h
+        src/SymbolTable.cpp src/SymbolTable.h
+        src/Parser.cpp src/Parser.h
         )
