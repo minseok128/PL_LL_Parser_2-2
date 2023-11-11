@@ -5,7 +5,7 @@
 # include <string>
 # include <fstream>
 # include <stdexcept>
-# include "InformationManager.h"
+# include "ContextManager.h"
 
 enum class TokenType {
     CONST,
@@ -20,21 +20,21 @@ enum class TokenType {
     END_OF_FILE
 };
 
-class LexicalAnalyzer {
+class Lexer {
 private:
-    InformationManager *infoMan;
-    static LexicalAnalyzer *instance;
+    ContextManager *ctxMan;
+    static Lexer *instance;
     std::string totalStr;
     int now;
     TokenType nextToken;
     std::string tokenStr;
 
-    explicit LexicalAnalyzer(const std::string &fileName);
+    explicit Lexer(const std::string &fileName);
 
 public:
     static bool initializeInstance(const std::string &fileName);
 
-    static LexicalAnalyzer *getInstance();
+    static Lexer *getInstance();
 
     TokenType getNextToken() const;
 

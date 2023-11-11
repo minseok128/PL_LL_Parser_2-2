@@ -1,9 +1,9 @@
-#include "LexicalAnalyzer.h"
+#include "Lexer.h"
 
-LexicalAnalyzer *LexicalAnalyzer::instance = nullptr;
+Lexer *Lexer::instance = nullptr;
 
-LexicalAnalyzer::LexicalAnalyzer(const std::string &fileName) : now(0), nextToken(TokenType::UNDEFINED),
-                                                                infoMan(InformationManager::getInstance()) {
+Lexer::Lexer(const std::string &fileName) : now(0), nextToken(TokenType::UNDEFINED),
+                                            ctxMan(ContextManager::getInstance()) {
     std::ifstream file(fileName);
     if (!file.is_open()) {
         throw std::runtime_error("Cannot open or read the file.");
@@ -15,31 +15,31 @@ LexicalAnalyzer::LexicalAnalyzer(const std::string &fileName) : now(0), nextToke
     totalStr += "\0"; // Simulate end of file marker
 }
 
-bool LexicalAnalyzer::initializeInstance(const std::string &fileName) {
+bool Lexer::initializeInstance(const std::string &fileName) {
     if (instance != nullptr) {
         return (false);
     }
     try {
-        instance = new LexicalAnalyzer(fileName);
+        instance = new Lexer(fileName);
     } catch (...) {
         return (false);
     }
     return (true);
 }
 
-LexicalAnalyzer *LexicalAnalyzer::getInstance() {
+Lexer *Lexer::getInstance() {
     return instance;
 }
 
-TokenType LexicalAnalyzer::getNextToken() const {
+TokenType Lexer::getNextToken() const {
     return nextToken;
 }
 
-std::string LexicalAnalyzer::getTokenStr() const {
+std::string Lexer::getTokenStr() const {
     return tokenStr;
 }
 
-void LexicalAnalyzer::lexical() {
+void Lexer::lexical() {
     bool warningFlag = false;
     int j = 0;
     std::string sb;
@@ -63,16 +63,16 @@ void LexicalAnalyzer::lexical() {
         nextToken = TokenType::MULT_OP;
     else if (nowChar == '(') {
         nextToken = TokenType::LEFT_PAREN;
-        infoMan->increaseLeftParenNum();
+        ctxMan->increaseLeftParenNum();
     } else if (nowChar == ')') {
         nextToken = TokenType::RIGHT_PAREN;
-        if (!infoMan->decreaseLeftParenNum())
+        if (!ctxMan->decreaseLeftParenNum())
             nextToken = TokenType::UNDEFINED;
     } else if (nowChar == ';')
         nextToken = TokenType::SEMI_COLON;
     else if (nowChar == ':' && now + 1 < totalStr.length() && totalStr[now + 1] == '=') {
         nextToken = TokenType::ASSIGN_OP;
-        if (!infoMan->increaseAssignmentNum())
+        if (!ctxMan->increaseAssignmentNum())
             nextToken = TokenType::UNDEFINED;
         tokenStr += "=";
         now++;
@@ -88,7 +88,7 @@ void LexicalAnalyzer::lexical() {
             nextToken = TokenType::CONST;
             tokenStr = sb;
             if (warningFlag)
-                infoMan->pushWarning(6, totalStr.substr(now, j));
+                ctxMan->pushWarning(6, totalStr.substr(now, j));
             now += j - 1;
         } else if (std::isalpha(nowChar) || nowChar == '_') {
             while ((now + j < totalStr.length()) && isMetaChar(totalStr[now + j])) {
@@ -101,11 +101,11 @@ void LexicalAnalyzer::lexical() {
             nextToken = TokenType::IDENT;
             tokenStr = sb;
             if (warningFlag)
-                infoMan->pushWarning(7, totalStr.substr(now, j));
+                ctxMan->pushWarning(7, totalStr.substr(now, j));
             now += j - 1;
         } else {
             nextToken = TokenType::UNDEFINED;
-            infoMan->pushWarning(4, std::string(1, nowChar));
+            ctxMan->pushWarning(4, std::string(1, nowChar));
         }
     }
     now++;
@@ -114,7 +114,7 @@ void LexicalAnalyzer::lexical() {
         this->lexical();
 }
 
-void LexicalAnalyzer::printTokenStr(const std::string &str) {
+void Lexer::printTokenStr(const std::string &str) {
     if (str.empty()) {
         if (nextToken == TokenType::SEMI_COLON || nextToken == TokenType::END_OF_FILE)
             std::cout << "\b;\n";
@@ -125,7 +125,7 @@ void LexicalAnalyzer::printTokenStr(const std::string &str) {
     }
 }
 
-bool LexicalAnalyzer::isMetaChar(char c) {
+bool Lexer::isMetaChar(char c) {
     return (!(c == '+' || c == '-' || c == '*' || c == '/' ||
               c == '(' || c == ')' || c == ';' || c == ' '));
 }
