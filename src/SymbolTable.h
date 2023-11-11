@@ -4,12 +4,12 @@
 #include <unordered_map>
 #include <string>
 #include <iostream>
-#include "Value.h"
+#include "Var.h"
 
 class SymbolTable {
 private:
     static SymbolTable *instance;
-    std::unordered_map<std::string, Value> table;
+    std::unordered_map<std::string, Var> table;
 
     SymbolTable();
 
@@ -20,9 +20,9 @@ public:
 
     static SymbolTable *getInstance();
 
-    void insert(const std::string &name, const Value &v);
+    void insert(const std::string &name, const Var &v);
 
-    Value find(const std::string &name);
+    Var find(const std::string &name);
 
     void print_all();
 };

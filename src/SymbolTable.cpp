@@ -11,16 +11,16 @@ SymbolTable *SymbolTable::getInstance() {
     return instance;
 }
 
-void SymbolTable::insert(const std::string &name, const Value &v) {
+void SymbolTable::insert(const std::string &name, const Var &v) {
     if (!name.empty()) {
         table[name] = v;
     }
 }
 
-Value SymbolTable::find(const std::string &name) {
+Var SymbolTable::find(const std::string &name) {
     auto it = table.find(name);
     if (it == table.end()) {
-        table[name] = Value();
+        table[name] = Var();
         return table[name];
     }
     return it->second;
