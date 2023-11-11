@@ -1,10 +1,11 @@
 #include "Parser.h"
 
-Parser* Parser::instance = nullptr;
+Parser *Parser::instance = nullptr;
 
-Parser::Parser() : lexer(LexicalAnalyzer::getInstance()), symTab(SymbolTable::getInstance()), infoMan(InformationManager::getInstance()) {}
+Parser::Parser() : lexer(LexicalAnalyzer::getInstance()), symTab(SymbolTable::getInstance()),
+                   infoMan(InformationManager::getInstance()) {}
 
-Parser* Parser::getInstance() {
+Parser *Parser::getInstance() {
     if (instance == nullptr) {
         instance = new Parser();
     }
@@ -67,15 +68,18 @@ void Parser::termTail() {
         std::string prevTokenStr = lexer->getTokenStr();
         lexer->lexical();
         term();
-        Value v2 = valStack.top(); valStack.pop();
-        Value v1 = valStack.top(); valStack.pop();
+        Value v2 = valStack.top();
+        valStack.pop();
+        Value v1 = valStack.top();
+        valStack.pop();
         valStack.push(Value::cal(v1, v2, prevTokenStr[0])); // Assuming '+' operator is overloaded in Value
         termTail();
     }
 }
 
 void Parser::factor() {
-    if (lexer->getNextToken() == TokenType::LEFT_PAREN || lexer->getNextToken() == TokenType::IDENT || lexer->getNextToken() == TokenType::CONST) {
+    if (lexer->getNextToken() == TokenType::LEFT_PAREN || lexer->getNextToken() == TokenType::IDENT ||
+        lexer->getNextToken() == TokenType::CONST) {
         if (lexer->getNextToken() == TokenType::LEFT_PAREN) {
             lexer->lexical();
             expression();
@@ -115,8 +119,10 @@ void Parser::factorTail() {
         std::string prevTokenStr = lexer->getTokenStr();
         lexer->lexical();
         factor();
-        Value v2 = valStack.top(); valStack.pop();
-        Value v1 = valStack.top(); valStack.pop();
+        Value v2 = valStack.top();
+        valStack.pop();
+        Value v1 = valStack.top();
+        valStack.pop();
         valStack.push(Value::cal(v1, v2, prevTokenStr[0])); // Assuming '*' operator is overloaded in Value
         factorTail();
     }
