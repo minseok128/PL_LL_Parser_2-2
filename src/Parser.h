@@ -1,18 +1,19 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <stack>
-#include "Lexer.h"
-#include "SymbolTable.h"
-#include "ContextManager.h"
-#include "Var.h"
+# include <stack>
+# include "Lexer.h"
+# include "SymbolTable.h"
+# include "ContextManager.h"
+# include "Var.h"
+# include "TokenType.h"
 
 class Parser {
 private:
     Lexer *lexer;
     SymbolTable *symTab;
     ContextManager *ctxMan;
-    std::stack<Var> valStack;
+    std::stack<Var> varStack;
     static Parser *instance;
 
     Parser();

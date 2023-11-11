@@ -37,5 +37,5 @@ void SymbolTable::print_all() {
         }
         std::cout << "; ";
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 }

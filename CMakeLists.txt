@@ -10,4 +10,4 @@ add_executable(CPP_Parser src/main.cpp
         src/Var.cpp src/Var.h
         src/SymbolTable.cpp src/SymbolTable.h
         src/Parser.cpp src/Parser.h
-        )
+        src/TokenType.h)

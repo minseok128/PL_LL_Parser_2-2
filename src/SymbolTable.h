@@ -1,10 +1,10 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <unordered_map>
-#include <string>
-#include <iostream>
-#include "Var.h"
+# include <unordered_map>
+# include <string>
+# include <iostream>
+# include "Var.h"
 
 class SymbolTable {
 private:

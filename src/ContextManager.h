@@ -1,9 +1,9 @@
 #ifndef INFORMATIONMANAGER_H
 #define INFORMATIONMANAGER_H
 
-#include <iostream>
-#include <string>
-#include <queue>
+# include <iostream>
+# include <string>
+# include <queue>
 
 namespace Color {
     const std::string RESET = "\033[0m";

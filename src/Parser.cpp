@@ -56,8 +56,8 @@ void Parser::statement() {
         ctxMan->increaseAssignmentNum();
     }
     expression();
-    symTab->insert(lhs_name, valStack.top());
-    valStack.pop();
+    symTab->insert(lhs_name, varStack.top());
+    varStack.pop();
 }
 
 void Parser::expression() {
@@ -76,11 +76,11 @@ void Parser::termTail() {
             lexer->lexical();
         }
         term();
-        Var v2 = valStack.top();
-        valStack.pop();
-        Var v1 = valStack.top();
-        valStack.pop();
-        valStack.push(Var::cal(v1, v2, prevTokenStr[0]));
+        Var v2 = varStack.top();
+        varStack.pop();
+        Var v1 = varStack.top();
+        varStack.pop();
+        varStack.push(Var::cal(v1, v2, prevTokenStr[0]));
         termTail();
     }
 }
@@ -101,11 +101,11 @@ void Parser::factorTail() {
             lexer->lexical();
         }
         factor();
-        Var v2 = valStack.top();
-        valStack.pop();
-        Var v1 = valStack.top();
-        valStack.pop();
-        valStack.push(Var::cal(v1, v2, prevTokenStr[0]));
+        Var v2 = varStack.top();
+        varStack.pop();
+        Var v1 = varStack.top();
+        varStack.pop();
+        varStack.push(Var::cal(v1, v2, prevTokenStr[0]));
         factorTail();
     }
 }
@@ -131,12 +131,12 @@ void Parser::factor() {
             if (!found.getIsInitialized()) {
                 ctxMan->pushError(0, lexer->getTokenStr());
             }
-            valStack.push(found);
+            varStack.push(found);
             lexer->lexical();
         } else {
             lexer->printTokenStr("");
             ctxMan->increaseConstNum();
-            valStack.emplace(std::stoi(lexer->getTokenStr()));
+            varStack.push(Var(std::stoi(lexer->getTokenStr())));
             lexer->lexical();
         }
         while ((nextToken = lexer->getNextToken()) != TokenType::ADD_OP && nextToken != TokenType::MULT_OP &&
@@ -146,7 +146,7 @@ void Parser::factor() {
             lexer->lexical();
         }
     } else {
-        valStack.emplace();
+        varStack.push(Var());
         lexer->printTokenStr("[Unknown]");
         ctxMan->pushWarning(5, lexer->getTokenStr());
     }
