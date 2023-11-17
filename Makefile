@@ -7,7 +7,7 @@ HBASE	= Parser ContextManager Lexer SymbolTable Var TokenType
 SRCS    = $(addprefix $(DIR)/, $(addsuffix .cpp, $(BASE)))
 OBJS    = $(addprefix $(DIR)/, $(addsuffix .o, $(BASE)))
 HEADERS = $(addprefix $(DIR)/, $(addsuffix .h, $(HBASE)))
-NAME    = parser
+NAME    = CPP_Parser
 
 all : $(NAME)
 
