@@ -1,8 +1,6 @@
-# Principles of programming languages
+# Principles of programming languages <Assignment 1>
 
-# <Assignment 1>
-
-<img src="./test_case/img_src/image001.png" width="700px"/>
+<img src="./test_case/img_src/image001.png" width="500px"/>
 
 **20203361 장민석**
 
@@ -52,7 +50,7 @@ $ ./parser test_case/test1.txt
 $ make test
 ```
 
-<img src="./test_case/img_src/image016.png" width="700px"/>
+<img src="./test_case/img_src/image016.png" width="850px"/>
 
 
 ---
