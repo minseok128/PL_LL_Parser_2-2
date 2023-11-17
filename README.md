@@ -2,6 +2,8 @@
 
 **20203361 장민석**
 
+<img src="./test_case/img_src/image001.png" width="500px"/>
+
 _표지 이미지는 Dall-E 3에 의해 생성됨_
 
 ## GOAL
