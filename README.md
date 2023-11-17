@@ -4,13 +4,38 @@
 
 _표지 이미지는 Dall-E 3에 의해 생성됨_
 
+## GOAL
+
+다음의 LL문법 BNF를 따르는 Input file에 대해서 LL 파싱을 수행하고, 그 결과를 출력한다.
+
+```
+<program> → <statements>
+<statements>→ <statement> | <statement><semi_colon><statements>
+<statement> → <ident><assignment_op><expression>
+<expression> → <term><term_tail>
+<term_tail> → <add_op><term><term_tail> | ε
+<term> → <factor> <factor_tail>
+<factor_tail> → <mult_op><factor><factor_tail> | ε
+<factor> → <left_paren><expression><right_paren> | <ident> | <const>
+<const> → any decimal numbers
+<ident> → any names conforming to C identifier rules
+<assignment_op> → :=
+<semi_colon> → ;
+<add_operator> → + | -
+<mult_operator> → * | /
+<left_paren> → (
+<right_paren> → )
+```
+
 ## Environment
 
+```
 macOS Ventura 13.1(22C65) Apple M1
 
 Apple clang version 12.0.0 (clang-1200.0.32.28)
 
 Target: x86_64-apple-darwin19.6.0
+```
 
 ## HOW TO
 
@@ -22,6 +47,8 @@ $ make test
 ```
 
 ---
+
+## 구현 세부 사항
 
 ### 1-1. 구현 세부 사항 결정: <span style="color:yellow;">WARNING 처리</span>
 
