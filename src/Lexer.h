@@ -1,5 +1,5 @@
-#ifndef LEXICALANALYZER_H
-#define LEXICALANALYZER_H
+#ifndef LEXER_H
+#define LEXER_H
 
 # include <iostream>
 # include <string>
@@ -10,29 +10,33 @@
 
 class Lexer {
 private:
-    ContextManager *ctxMan;
-    static Lexer *instance;
-    std::string totalStr;
-    unsigned int now;
-    TokenType nextToken;
-    std::string tokenStr;
+	ContextManager *ctxMan;
+	static Lexer *instance;
+	std::string totalStr;
+	unsigned int now;
+	TokenType nextToken;
+	std::string tokenStr;
 
-    explicit Lexer(const std::string &fileName);
+	explicit Lexer(const std::string &fileName);
 
 public:
-    static bool initializeInstance(const std::string &fileName);
+	static bool vOption;
 
-    static Lexer *getInstance();
+	static bool initializeInstance(char **argv);
 
-    TokenType getNextToken() const;
+	static Lexer *getInstance();
 
-    std::string getTokenStr() const;
+	TokenType getNextToken() const;
 
-    void lexical();
+	std::string getTokenStr() const;
 
-    void printTokenStr(const std::string &str);
+	void lexical();
 
-    static bool isMetaChar(char c);
+	void printTokenStr(const std::string &str);
+
+	static bool isMetaChar(char c);
+
+	static std::string TokenTypeToString(TokenType type);
 };
 
-#endif // LEXICALANALYZER_H
+#endif // LEXER_H

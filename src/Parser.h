@@ -10,33 +10,33 @@
 
 class Parser {
 private:
-    Lexer *lexer;
-    SymbolTable *symTab;
-    ContextManager *ctxMan;
-    std::stack<Var> varStack;
-    static Parser *instance;
+	Lexer *lexer;
+	SymbolTable *symTab;
+	ContextManager *ctxMan;
+	std::stack<Var> varStack;
+	static Parser *instance;
 
-    Parser();
+	Parser();
 
 public:
-    static Parser *getInstance();
+	static Parser *getInstance();
 
-    void program();
+	void program();
 
 private:
-    void statements();
+	void statements();
 
-    void statement();
+	void statement();
 
-    void expression();
+	void expression();
 
-    void term();
+	void term();
 
-    void termTail();
+	void termTail();
 
-    void factor();
+	void factor();
 
-    void factorTail();
+	void factorTail();
 };
 
 #endif // PARSER_H

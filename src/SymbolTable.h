@@ -8,23 +8,23 @@
 
 class SymbolTable {
 private:
-    static SymbolTable *instance;
-    std::unordered_map<std::string, Var> table;
+	static SymbolTable *instance;
+	std::unordered_map<std::string, Var> table;
 
-    SymbolTable();
+	SymbolTable();
 
 public:
-    SymbolTable(const SymbolTable &) = delete;
+	SymbolTable(const SymbolTable &) = delete;
 
-    SymbolTable &operator=(const SymbolTable &) = delete;
+	SymbolTable &operator=(const SymbolTable &) = delete;
 
-    static SymbolTable *getInstance();
+	static SymbolTable *getInstance();
 
-    void insert(const std::string &name, const Var &v);
+	void insert(const std::string &name, const Var &v);
 
-    Var find(const std::string &name);
+	Var find(const std::string &name);
 
-    void print_all();
+	void print_all(bool vOption);
 };
 
 #endif // SYMBOLTABLE_H
