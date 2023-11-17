@@ -4,4 +4,10 @@ project(CPP_Parser)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_custom_target(CPP_Parser COMMAND make -C ${CMAKE_SOURCE_DIR} CLION_EXE_DIR=${PROJECT_BINARY_DIR})
+add_executable(CPP_Parser src/main.cpp
+        src/ContextManager.cpp src/ContextManager.h
+        src/Lexer.cpp src/Lexer.h
+        src/Var.cpp src/Var.h
+        src/SymbolTable.cpp src/SymbolTable.h
+        src/Parser.cpp src/Parser.h
+        src/TokenType.h src/main.cpp)
