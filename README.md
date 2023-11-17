@@ -1,6 +1,8 @@
 # Principles of programming languages <Assignment 1>
 
-<img src="./test_case/img_src/image001.png" width="500px"/>
+<p align="center">
+   <img src="./test_case/img_src/image001.png" width="500px"/>
+</p>
 
 **20203361 장민석**
 
