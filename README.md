@@ -6,7 +6,7 @@
 
 **20203361 장민석**
 
-_표지 이미지는 Dall-E 3에 의해 생성됨_
+[View on GitHub](https://github.com/minseok128/PL_Parser_2-2)
 
 ## GOAL
 
