@@ -50,6 +50,9 @@ $ ./parser test_case/test1.txt
 $ make test
 ```
 
+<img src="./test_case/img_src/image016.png" width="500px"/>
+
+
 ---
 
 ## 구현 세부 사항
