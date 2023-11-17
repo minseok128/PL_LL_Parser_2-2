@@ -1,4 +1,4 @@
-CC      = clang++ -std=c++14
+CC      = c++ -std=c++14
 CFLAGS  = -Wall -Wextra -Werror
 
 DIR     = ./src
