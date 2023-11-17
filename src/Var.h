@@ -1,23 +1,23 @@
-#ifndef VALUE_H
-#define VALUE_H
+#ifndef VAL_H
+#define VAL_H
 
 # include "ContextManager.h"
 
 class Var {
 private:
-    int value;
-    bool isInitialized;
+	int value;
+	bool isInitialized;
 
 public:
-    Var();
+	Var();
 
-    explicit Var(int val);
+	explicit Var(int val);
 
-    static Var cal(const Var &v1, const Var &v2, char op);
+	static Var cal(const Var &v1, const Var &v2, char op);
 
-    int getValue() const;
+	int getValue() const;
 
-    bool getIsInitialized() const;
+	bool getIsInitialized() const;
 };
 
-#endif // VALUE_H
+#endif // VAL_H
