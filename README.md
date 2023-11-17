@@ -34,11 +34,13 @@ _표지 이미지는 Dall-E 3에 의해 생성됨_
 ## Environment
 
 ```
-macOS Ventura 13.1(22C65) Apple M1
+개발 및 실행 환경: macOS Ventura 13.1(22C65) Apple M1
 
-Apple clang version 12.0.0 (clang-1200.0.32.28)
+언어: c++
 
-Target: x86_64-apple-darwin19.6.0
+컴파일러: clang version 14.0.0 (clang-1400.0.29.202)
+
+타겟: arm64-apple-darwin22.2.0
 ```
 
 ## HOW TO
