@@ -1,8 +1,10 @@
-# Principles of programming languages Assignment 1
+# Principles of programming languages
 
-**20203361 장민석**
+# <Assignment 1>
 
 <img src="./test_case/img_src/image001.png" width="500px"/>
+
+**20203361 장민석**
 
 _표지 이미지는 Dall-E 3에 의해 생성됨_
 
@@ -66,6 +68,7 @@ $ make test
     operand2 := operand1 + + -/ 2;
     target := operand1 + operand2 * 3
     ```
+   <img src="./test_case/img_src/image002.png" width="500px"/>
 
 2. **닫는 괄호 누락 (경고_1)**: 열린 괄호에 비해 닫는 괄호가 부족한 경우이다. 해당 문장의 마지막에
    도달했을 때 부족한 닫는 괄호의 수에 맞게 적절하게 닫는 괄호를 추가하여 괄호의 쌍을 완성하여 정
@@ -74,6 +77,7 @@ $ make test
     operand1 := (3 * (3 - 1) * (5 - 3;
     target := operand1 * ((1) - (((2 
     ```
+   <img src="./test_case/img_src/image003.png" width="500px"/>
 
 3. **불필요한 <factor> 요소 (경고_2)**: <factor> 구문 뒤에 예상치 못한 요소가 나타난 경우이다. 이 불
    필요한 요소들을 모두 제거하여 문장을 정상화한다.
@@ -82,6 +86,7 @@ $ make test
     operand2 := operand1 operand1 operand2+ operand1 123 operand2 operand1;
     target := operand1 1 2
     ```
+   <img src="./test_case/img_src/image004.png" width="500px"/>
 
 4. **대입 연산자 누락 (경고_3)**: 대입 연산자가 없는 경우에는 필요한 위치에 추가하여 문장을 정상화한
    다.
@@ -90,6 +95,7 @@ $ make test
     operand2 := operand1 + 2;
     target operand1 + operand2 * 3
     ```
+   <img src="./test_case/img_src/image005.png" width="500px"/>
 
 5. **정의되지 않은 토큰 (경고_4)**: 문장 내에 정의될 수 없는 문자열이 발견되어 의미 있는 토큰으로 변
    환 할 수 없는 상황이 발견되면 해당 토큰을 제거하고 문장을 정상화한다.
@@ -97,6 +103,7 @@ $ make test
     operand1 := &%3 ^^;$#
     operand2 := operand1 &$ + &$2 
     ```
+   <img src="./test_case/img_src/image006.png" width="500px"/>
 
 6. **피연산자 부족 (경고_5)**: 연산자에 짝이 맞도록 필요한 피연산자가 없는 경우 누락된 위치에 정의
    되지 않은 가상의 값을 추가하여 문장을 정상화한다.
@@ -105,6 +112,7 @@ $ make test
     operand2 := * 2 + (1 - 2);
     target :=
     ```
+   <img src="./test_case/img_src/image007.png" width="500px"/>
 
 7. **숫자가 아닌 문자 포함 (경고_6)**: 숫자로만 이루어져야 하는 상수에 숫자 외의 다른 문자가 포함된
    경우 해당 문자를 제거하여 정상적인 숫자가 될 수 있도록 복구한다.
@@ -112,6 +120,7 @@ $ make test
     operand1 := 1%1^1@1#;
     operand2 := operand1 + 2!!@#
     ```
+   <img src="./test_case/img_src/image008.png" width="500px"/>
 
 8. **변수명에 부적절한 문자 포함 (경고_7)**: 변수명에 허용되지 않는 문자가 포함된 경우 이러한 문자
    들을 모두 제거하여 규칙에 맞는 변수명이 될 수 있도록 복구한다.
@@ -120,6 +129,7 @@ $ make test
     op@era#n%d2 := op^^er^^and1 + 2;
     tar^^$#%get := o^pe^rand^1 + operand2^ 
     ```
+   <img src="./test_case/img_src/image009.png" width="500px"/>
 
 9. **여는 괄호 누락 (경고_8)**: 여는 괄호가 닫는 괄호보다 적을 경우 여는 괄호를 적절히 넣을 수 없으
    므로 현재 등장한 짝이 맞지 않는 닫는 괄호를 모두 제거하여 문장을 정상화한다.
@@ -127,6 +137,7 @@ $ make test
     operand1 := 2 + 3) * 2;
     operand2 := operand1) ))+ ((2))))
     ```
+   <img src="./test_case/img_src/image010.png" width="500px"/>
 
 10. **대입 연산자 중복 (경고_9)**: 한 문장 내에서 대입 연산자가 여러 번 사용된 경우 BNF 상으로 올바
     른 위치에 있는 하나의 대입 연산자만을 남기고 나머지는 모두 제거한다.
@@ -135,6 +146,7 @@ $ make test
     operand2 := := := operand1 := + 2;
     target := operand1 + operand2 * 3 := 
     ```
+    <img src="./test_case/img_src/image011.png" width="500px"/>
 
 ### 1-2. 구현 세부 사항 결정: <span style="color:red;">ERROR 처리</span>
 
@@ -147,6 +159,7 @@ $ make test
     operand2 := operand1 + 2;
     target := operand3 + operand2 * 3
     ```
+   <img src="./test_case/img_src/image012.png" width="500px"/>
 
 2. **대입 연산의 왼쪽에 변수가 없는 경우 (오류 유형 1)**: 대입 연산자의 왼쪽 부분에 변수가 존재하지
    않으면 이는 문법적으로 잘못된 것으로 오류로 분류된다. 예를 들어 ":= 1 + 2;" 또는 "2 := 1 * 3;" 같
@@ -155,6 +168,7 @@ $ make test
     := 1 + 2;
     2 := 1 * 3
     ```
+   <img src="./test_case/img_src/image013.png" width="500px"/>
 
 3. **0으로 나누기 시도 (오류 유형 2)**: 프로그래밍에서 0으로 나누는 것은 정의되지 않은 연산으로 문
    장 내에서 이를 시도할 경우 즉시 오류로 분류한다. "operand1 := 21 / 0 + 1;" 같은 예에서 볼 수 있듯
@@ -163,6 +177,7 @@ $ make test
     operand1 := 21 / 0 + 1;
     operand2 := 2 / operand1 
     ```
+   <img src="./test_case/img_src/image014.png" width="500px"/>
 
 ### 1-3. 구현 세부 사항 결정: <span style="color:green;">-v option</span>
 
@@ -174,6 +189,8 @@ operand1 := 1;
 operand2 := (operand1 * 3) + 2;
 target := operand
 ```
+
+<img src="./test_case/img_src/image015.png" width="500px"/>
 
 ## TO DO
 
