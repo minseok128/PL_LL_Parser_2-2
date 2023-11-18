@@ -190,9 +190,9 @@ $ make test
 토큰의 타입을 출력하는 방식으로 구현하였다.
 
 ```
-operand1 := 1;
-operand2 := (operand1 * 3) + 2;
-target := operand
+operand1 := 3;
+operand2 := operand1 + 2;
+target := operand1 + operand2 * 3
 ```
 
 <img src="./test_case/img_src/image015.png" width="700px"/>
